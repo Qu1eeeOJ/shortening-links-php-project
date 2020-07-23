@@ -43,10 +43,22 @@ if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_to` = :u
 // The length of the generated links
 $length = rand($app->conf->shorter['min'], $app->conf->shorter['max']);
 
+// Checking the uniqueness of the abbreviation
+while (true) {
+    // Generating a link
+    $url_from = Str::rand($length);
+
+    // Check if this abbreviation is in the database
+    if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_from` = :redirect_from', ['redirect_from' => $url_from])['COUNT(1)'] == 0) {
+        // Exiting the loop
+        break;
+    }
+}
+
 // Preparing data for insertion into the database
 $params = [
     'url_to' => $_POST['url'],
-    'url_from' => Str::rand($length)
+    'url_from' => $url_from
 ];
 
 // Creating a short link
