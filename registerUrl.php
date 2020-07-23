@@ -41,7 +41,7 @@ if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_to` = :u
 }
 
 // The length of the generated links
-$length = rand($app->conf->shorter['min'], $app->conf->shorter['max']);
+$length = is_null($app->conf->shorter['standard']) ? rand($app->conf->shorter['min'], $app->conf->shorter['max']) : $app->conf->shorter['standard'];
 
 // Checking the uniqueness of the abbreviation
 while (true) {

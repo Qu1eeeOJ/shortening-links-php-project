@@ -12,6 +12,9 @@ return [
     'min' => 8,
 
     // Maximum number of characters per link
-    'max' => 16
+    'max' => 16,
+
+    // If a value is set, the min and max values are ignored
+    'standard' => null
 
 ];
