@@ -22,7 +22,7 @@ $_POST['url'] = trim($_POST['url'], '/');
 
 // Check if this is a link
 if (!preg_match('/\b(?:(?:https?|ftp):\/\/|www\.)[-A-zA0-9+&@#\/%?=~_|!:,.;]*[-A-z0-9+&@#\/%=~_|]/', $_POST['url'])) {
-    echo toAxios('error', 'Это не ссылка', ['redirect_to' => 'Это не ссылка']);
+    echo toAxios('error', 'This is not a link', ['redirect_to' => 'This is not a link']);
     return;
 }
 
@@ -36,7 +36,7 @@ $db = DB::getInstance();
 if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_to` = :url', ['url' => $_POST['url']])->fetch()['COUNT(1)'] != 0) {
     // Return the link, if it was already created
     $url_from = $db->queryWithPrepare('SELECT `redirect_from` FROM `links` WHERE `redirect_to` = :url', ['url' => $_POST['url']])->fetch();
-    echo toAxios('error', 'Такая запись уже существует', $url_from);
+    echo toAxios('error', 'This entry already exists', $url_from);
     return;
 }
 
@@ -50,5 +50,5 @@ $params = [
 $db->queryWithPrepare('INSERT INTO `links` (`redirect_to`, `redirect_from`) VALUES (:url_to, :url_from)', $params);
 
 // Returning a short link
-echo toAxios('success', 'Ссылка успешно создана', ['redirect_from' => generateUrl($params['url_from'])]);
+echo toAxios('success', 'The link was created successfully', ['redirect_from' => generateUrl($params['url_from'])]);
 return;

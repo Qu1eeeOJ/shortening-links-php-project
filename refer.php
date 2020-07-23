@@ -23,7 +23,7 @@ $db = DB::getInstance();
 
 // We check whether there is such an abbreviated link
 if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_from` = :redirect_from', ['redirect_from' => $redirect_from])->fetch()['COUNT(1)'] == 0) {
-    echo 'ERROR: Такой ссылки не было найдено';
+    echo 'ERROR: No such link was found';
     return;
 }
 
