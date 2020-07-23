@@ -7,12 +7,13 @@ return [
      *
      * This project uses PHP PDO
      * Some settings for configuring mysql are listed below
+     * P.s This is a config for MySQL
      */
 
     'host' => 'localhost',
-    'db' => 'shortlinks',
-    'username' => 'root',
-    'password' => 'root',
+    'db' => '',
+    'username' => '',
+    'password' => '',
     'charset' => 'utf8mb4',
     'opt' => [
         PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
