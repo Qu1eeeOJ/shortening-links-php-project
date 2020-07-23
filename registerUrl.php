@@ -40,10 +40,13 @@ if ($db->queryWithPrepare('SELECT COUNT(1) FROM `links` WHERE `redirect_to` = :u
     return;
 }
 
+// The length of the generated links
+$length = rand($app->conf->shorter['min'], $app->conf->shorter['max']);
+
 // Preparing data for insertion into the database
 $params = [
     'url_to' => $_POST['url'],
-    'url_from' => Str::rand()
+    'url_from' => Str::rand($length)
 ];
 
 // Creating a short link

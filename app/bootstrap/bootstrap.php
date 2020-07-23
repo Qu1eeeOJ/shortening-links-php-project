@@ -19,6 +19,7 @@ require_once 'functions.php';
 
 // The connection configuration of the application
 $app = require_once APP . '/config/app.php';
+$shorter = require_once APP . '/config/shorter.php';
 
 // Creating the application hierarchy
 $app = (object) [
@@ -28,6 +29,7 @@ $app = (object) [
     'conf' => (object) [
         // Access to all configs that you use in the app
         'app' => $app,
+        'shorter' => $shorter
     ]
 ];
 
